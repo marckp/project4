@@ -15,10 +15,8 @@
 
 
 
-\title[CPP2]{Computational Physics Project 3\\
-\large{The Solar System}\\
-or\\
-I can See my House from Here!}
+\title[CPP2]{Computational Physics Project 4\\
+\large{Studies of phase transitions in magnetic systems}}
 
 \author{Marius B. Pran}
 \affiliation{Institute of Theoretical Astrophysics, University of Oslo}
@@ -60,7 +58,7 @@ BLAH BLAH BLAH
 The Metropolis algorithm is summarized as follows.
 BLAH BLAH BLAH 
 
-\section{Case Studies}
+\section{Case Studies and their Methods}
 
 \paragraph{Case 1, project 4a): For case 1, I studied a simple $2\times 2$ lattice, analytical expressions.}
 I assumed that we had only two spins in each dimension, that is $L=2$. I found the analytical expression 
@@ -75,14 +73,13 @@ $E$, mean magnetization
 $\vert M\vert$, the specific heat $C_V$ and the susceptibility $\chi$ 
 as functions of  $T$ using periodic boundary conditions for 
 $L=2$ in the $x$ and $y$ directions. 
-Compare your results with the expressions from a)
+I compared my results with the expressions from a)
 for  a  temperature $T=1.0$ (in units of $kT/J$). 
 
-How many Monte Carlo cycles do you need in order to achieve a 
-good agreeement?
+I determined the number of Monte Carlo cycles do you need in order to achieve a good agreement.
 
-\paragraph{Case 3, project 4c): When is the most likely state reached?}
-We choose now a square lattice with $L=20$ spins in the $x$ and $y$ directions. 
+\paragraph{Case 3, project 4c): For case 3, determine when the most likely state reached?}
+I choose now a square lattice with $L=20$ spins in the $x$ and $y$ directions. 
 
 In the previous exercise  I did not study carefully how many Monte Carlo cycles were needed in order to reach the most likely state. Here
 I performed a study of the time (here it corresponds to the number 
@@ -91,26 +88,23 @@ that allowed me to start computing various expectations values. My
 first iteration was a rough and plain graphical
 one, where I plotted various expectations values as functions of the number of Monte Carlo cycles.
 
-Choose first a temperature of $T=1.0$ (in units of $kT/J$) and study the 
-mean energy and magnetization (absolute value) as functions of the number of Monte Carlo cycles. Let the number of Monte Carlo cycles (sweeps per lattice)
-represent time.
-Use both an ordered (all spins pointing in one direction) and a random
+I choose the first temperature of $T=1.0$ (in units of $kT/J$) and studied the 
+mean energy and magnetization (absolute value) as functions of the number of Monte Carlo cycles. I let the number of Monte Carlo cycles (sweeps per lattice) represent time.
+I used both an ordered (all spins pointing in one direction) and a random
 spin orientation as starting configuration. 
-How many Monte Carlo cycles do you need before you reach an equilibrium situation?
-Repeat this analysis for $T=2.4$. 
-Can you, based on these values estimate an equilibration time?
-Make also a plot of the total number of accepted configurations 
-as function of the total number of Monte Carlo cycles. How does the number of
-accepted configurations behave as function of temperature $T$?
+My program reported the number of Monte Carlo cycles do you need before you reach an equilibrium situation?
+I repeated this analysis for $T=2.4$. 
+I estimated, based on these values, an equilibration time, and made
+ a plot of the total number of accepted configurations 
+as function of the total number of Monte Carlo cycles that showed how the number of accepted configurations behaved as function of temperature $T$?
 
-\paragraph{Project 4d): Analyzing the probability distribution.}
-Compute thereafter the probability
+\paragraph{Project 4d): For case 4, I analyzed the probability distribution.}
+I computed the probability
 $P(E)$ for the previous system with $L=20$ and the same temperatures, that is at $T=1.0$ and $T=2.4$.
-You compute this probability by simply counting the number of times a 
-given energy appears in your computation. Start the computation after 
-the steady state situation has been reached.
-Compare your results with the computed variance in energy 
-$\sigma^2_E$ and discuss the behavior you observe. 
+I computed this probability by simply counting the number of times a 
+given energy appears in my computation. I started the computation after 
+the steady state situation has been reached. Then, I compared my results with the computed variance in energy
+$\sigma^2_E$ and compared (below in the results section) the behavior I observed. 
 
 \paragraph{Studies of phase transitions.}
 Near $T_C$ we can characterize the behavior of many physical quantities
@@ -177,30 +171,46 @@ and susceptibility
 \end{equation}
 
 
-\paragraph{Project 4e): Numerical studies of phase transitions.}
-We wish to study the behavior of the Ising model
-in two dimensions close to the critical temperature as a function of
-the lattice size $L\times L$. Calculate the expectation values for
-$\langle E\rangle$ and $\langle \vert M\vert \rangle$, the specific heat
+\paragraph{Project 4e): Case 5, Numerical studies of phase transitions.}
+I studied the behavior of the Ising model in two dimensions close to the critical temperature as a function of the lattice size $L\times L$. I calculated the expectation values for $\langle E\rangle$ and $\langle \vert M\vert\rangle$, the specific heat
 $C_V$ and the susceptibility $\chi$ as functions of $T$ for $L=40$,
 $L=60$, $L=80$ and $L=100$ for $T\in [2.0,2.3]$ with a step in
-temperature $\Delta T=0.05$ or smaller.  You may find it convenient to narrow the domain for $T$. 
+temperature $\Delta T=0.05$ or smaller.  I found it convenient to narrow the domain for $T$ to blah blah blah. 
 
-Plot $\langle E\rangle$,
-$\langle \vert M\vert\rangle$, $C_V$ and $\chi$ as functions of $T$. Can
-you see an indication of a phase transition?  Use the absolute value
-$\langle \vert M\vert\rangle$ when you evaluate $\chi$.  For these production runs you should
-parallelize the code using MPI (recommended). Alternatively OpenMP can be used. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code. 
-
+I plotted $\langle E\rangle$,
+$\langle \vert M\vert\rangle$, $C_V$ and $\chi$ as functions of $T$.  blah blah blah an indication of a phase transition?  I used the absolute value
+$\langle \vert M\vert\rangle$ when you evaluate $\chi$.  For these production runs I
+parallelized the code using OpenMP can be used. I use optimization flags, blah blah blah, when compiling. I performed a timing analysis of some selected runs in order to see that you optimized the speedup using the parallelized code. 
 
 
-\paragraph{Project 4f): Extracting the critical temperature.}
-Use Eq. (\ref{eq:tc}) and the exact result
+
+\paragraph{Project 4f): Case 6, Extracting the critical temperature.}
+I used Eq. (\ref{eq:tc}) and the exact result
 $\nu=1$ in order to estimate $T_C$ in the thermodynamic limit 
 $L\rightarrow \infty$
-using your simulations with $L=40$, $L=60$, $L=100$ and $L=140$
+using my simulations with $L=40$, $L=60$, $L=100$ and $L=140$
 The exact result for the critical temperature (\href{{http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117}}{after Lars Onsager}) is
 $kT_C/J=2/ln(1+\sqrt{2})\approx 2.269$ with $\nu=1$.
+
+
+ \section{Results}
+ \paragraph{Case 1, project 4a): For case 1, benchmark calculations for my next steps.}
+ 
+ \paragraph{Case 2, project 4b):  For case 2, comparing the C++ code implementing the Ising mode with the analytical results for case 1.}
+The number cycles to reach good agreement is blah blah blah.
+
+\paragraph{Case 4, project 4c): For case 4,  expectations values as functions of the number of Monte Carlo cycles.}
+blah blah blah
+PLOT
+blah blah blah
+The number of Monte Carlo cycles needed before an equilibrium was reached blah blah blah equilibrium time
+blah blah blah
+PLOT
+blah blah blah
+figure X showed how the number of accepted configurations behaved as function of temperature $T$
+
+\paragraph{Project 4d): For case 4, probability distribution.}
+
 
 \subsection*{Background literature}
 
