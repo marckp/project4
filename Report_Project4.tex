@@ -19,10 +19,6 @@
 \title[CPP2]{Computational Physics Project 4\\
 \large{Studies of phase transitions in magnetic systems}}
 
-\author{Marius B. Pran}
-\affiliation{Institute of Theoretical Astrophysics, University of Oslo}
-\author{Espen Hodne} 
-\affiliation{Institute of Theoretical Astrophysics, University of Oslo}
 \author{Marc K. Pestana}
 \affiliation{Institute of Theoretical Astrophysics, University of Oslo}
 
@@ -34,7 +30,7 @@ To this end, I implemented the model by developing a C++ program. I found that a
 \maketitle
 
 \section{Introduction.}
-The \href{{https://en.wikipedia.org/wiki/Ising_model}}{Ising model} has been extremely popular, with applications spanning from studies of phase transitions to simulations in statistics. In one and two dimensions its has analytical solutions to several expectation values and it gives a qualitatively  good understanding of several types of phase transitions.  In its simplest form
+The \href{https://en.wikipedia.org/wiki/Ising_model}{Ising model} has been extremely popular, with applications spanning from studies of phase transitions to simulations in statistics. In one and two dimensions its has analytical solutions to several expectation values and it gives a qualitatively  good understanding of several types of phase transitions.  In its simplest form
 without an externally applied magnetic field, the energy of the Ising model is expressed as 
 \[
 E=-J\sum_{< kl >}^{N}s_ks_l 
@@ -43,7 +39,7 @@ with $s_k=\pm 1$. The quantity $N$ represents the total number of spins and $J$ 
 neighboring spins.  The symbol $<kl>$ indicates that we sum over nearest neighbors only. 
 
 \section{Theoretical Models}
-\paragraph{The material on the Ising model is summerized as follows} 
+\paragraph{Summary of Ising model}
 The model I employed in my studies of phase transitions at finite temperature
 for magnetic systems is the so-called Ising model. The system in this case in the canonical In its simplest form the energy is expressed as\newline
 \newline
@@ -56,7 +52,7 @@ magnetic field interacting with the magnetic moment set up by the spins.
 The symbol $< kl >$ indicates that we sum over nearest neighbors only. Notice that for $J > 0$ 0 it is energetically favorable for neighboring spins to be aligned. This is consistent the tendency for canonical systems is to "seek" the lowest energy state, it is energetically favorable for neighboring spins to be aligned, since alignment means that $s_ks_l  > 0$. This plus  $J>0 \Rightarrow E < 0$ and thus a lower energy state. 
 At low enough temperatures, this feature leads to a cooperative phenomenon called spontaneous magnetization. Thus, a given magnetic moment can influence the alignment of spins that are separated from the given spin by a macroscopic distance by propagation through interactions between nearest neighbors. These long range correlations between spins are associated with a long-range order in which the lattice has a net magnetization in the absence of a magnetic field.
 \paragraph{Boltzmann distribution}
-In order to calculate expectation values such as the mean energy $hE_i$ or magnetization $hM_i$ in statistical physics at a given temperature, I used a probability distribution or Boltzmann distribution\newline
+In order to calculate expectation values such as the mean energy $hE_i$ or magnetization $hM_i$ in statistical physics at a given temperature, I used a probability distribution called the Boltzmann distribution\newline
 \newline
 $P_i(\beta) = \frac{e^{-\beta E_i}}{Z}$\newline
 \newline
@@ -65,91 +61,259 @@ with $\beta = 1/kT$ being the inverse temperature, $k$ the Boltzmann constant, $
 Z = \sum_{i=1}^{M} e^{-\beta E_i}
 \]
 where the sum extends over all $M$ microstates . $P_i$ expresses the probability of finding the system in a given configuration i.
-Energy for a specific configuration
+\paragraph{Energy for a specific configuration}
 The energy for a specific configuration i is given by
-Ei = ?J
-X
-N
-<kl>
-sksl
-.
-Configurations
-To better understand what is meant with a configuration, consider first the case
-of the one-dimensional Ising model with B = 0. In general, a given configuration
-of N spins in one dimension may look like
-? ? ? . . . ? ? ? . . . ? ?
-1 2 3 . . . i ? 1 i i + 1 . . . N ? 1 N
+\[
+E_i = -J\sum_{<kl>}^{N} s_ls_k
+\]
+\paragraph{Configurations}
+To better understand what is meant by a configuration, consider first the case
+of the one-dimensional Ising model with $B = 0$. In general, a given configuration of N spins in one dimension may look like
+\[
+\begin{bmatrix}
+\uparrow & \uparrow  & \uparrow & \cdots & \uparrow & \downarrow & \uparrow & \cdots & \uparrow  & \uparrow \\
+1 & 2 & 3 & \cdots & i - 1 & i & i + 1 & \cdots & N-1 & N\\ 
+\end{bmatrix}
+\]
 In order to illustrate these features let us further specialize to just two spins.
 With two spins, since each spin takes two values only, we have 2
 2 = 4 possible
-arrangements of the two spins. These four possibilities are
-5
-1 =?? 2 =?? 3 =?? 4 =??
-Boundary conditions, free ends
+arrangements of the two spins. These four possibilities are\newline
+1 =$\uparrow  \uparrow$ 2 =$\uparrow  \downarrow$ 3 =$\downarrow  \uparrow$ 4 =$\downarrow  \downarrow$ \newline
+\paragraph{Boundary conditions}
 What is the energy of each of these configurations?
 For small systems, the way we treat the ends matters. Two cases are often
-used.
-In the first case we employ what is called free ends. This means that there
-is no contribution from points to the right or left of the endpoints. For the
-one-dimensional case, the energy is then written as a sum over a single index
-Ei = ?J
-N
-X?1
-j=1
-sj sj+1,
-Free ends and the energy
-If we label the first spin as s1 and the second as s2 we obtain the following
-expression for the energy
-E = ?Js1s2.
-The calculation of the energy for the one-dimensional lattice with free ends for
-one specific spin-configuration can easily be implemented in the following lines
-for ( j=1; j < N; j++) {
-energy += spin[j]*spin[j+1];
-}
-where the vector spin[] contains the spin value sk = ±1.
-Free ends and energy
-For the specific state E1, we have chosen all spins up. The energy of this
-configuration becomes then
-E1 = E?? = ?J.
-The other configurations give
-E2 = E?? = +J,
-E3 = E?? = +J,
-and
-E4 = E?? = ?J.
-6
-Periodic boundary conditions
-We can also choose so-called periodic boundary conditions. This means that the
-neighbour to the right of sN is assumed to take the value of s1. Similarly, the
-neighbour to the left of s1 takes the value sN . In this case the energy for the
+used. In the first case one can employ what is called free ends. Instead I used the second case  
+Periodic boundary conditions. This means that the
+neighbour to the right of $s_N$ is assumed to take the value of $s_1$. Similarly, the
+neighbour to the left of $s_1$ takes the value $s_N$ . In this case the energy for the
 one-dimensional lattice reads
-Ei = ?J
-X
-N
-j=1
-sj sj+1,
-and we obtain the following expression for the two-spin case
-E = ?J(s1s2 + s2s1).
-Energy with PBC
-In this case the energy for E1 is different, we obtain namely
-E1 = E?? = ?2J.
-The other cases do also differ and we have
-E2 = E?? = +2J,
-E3 = E?? = +2J,
-and
-E4 = E?? = ?2J
+\[
+E_i = -J\sum_{j=1}^{N} s_js_{j+1}
+\]
+For each $i$ we obtain each $E_i$ as follows:\newline\newline
+E1 = $E_{\uparrow \uparrow}$ = -2J\newline
+E2 = $E_{\uparrow \downarrow}$ = +2J\newline
+E3 = $E_{\downarrow \uparrow}$ = +2J\newline
+E4 = $E_{\downarrow \downarrow}$ = -2J\newline
+
 \section{Algorithms}
 The Metropolis algorithm is summarized as follows.
-BLAH BLAH BLAH 
+In a calculation of the Ising model in two dimensions, the number of configurations
+is given by 2
+N with N = L × L the number of spins for a lattice of length L.
+Fortunately, the Metropolis algorithm considers only ratios between probabilities
+and we do not need to compute the partition function at all. The algorithm goes
+as follows: \newline
+1. Establish an initial state with energy Eb by positioning yourself at a random
+configuration in the lattice
+2. Change the initial configuration by flipping e.g., one spin only. Compute
+the energy of this trial state $E_t$.
+3. Calculate $-E = E_t - E_b$. The number of values $-E$ is limited to five for
+the Ising model in two dimensions, see the discussion below.
+4. If $-E$ we accept the new configuration, meaning that the energy is
+lowered and we are hopefully moving towards the energy minimum at a
+given temperature. Go to step 7.
+5. If $E > 0$, calculate $w = e$
+6. Compare w with a random number r. If $r ? w$, then accept the new
+configuration, else we keep the old configuration.
+7. The next step is to update various expectations values.
+8. The steps (2)-(7) are then repeated in order to obtain a sufficently good
+representation of states.
+9. Each time you sweep through the lattice, i.e., when you have summed over
+all spins, constitutes what is called a Monte Carlo cycle. You could think
+of one such cycle as a measurement. At the end, you should divide the
+various expectation values with the total number of cycles. You can choose
+whether you wish to divide by the number of spins or not. If you divide
+with the number of spins as well, your result for e.g., the energy is now
+the energy per spin.\newline
+
+\begin{tikzpicture}
+\begin{axis}[
+enlargelimits=0.2,
+]
+\addplot+ [nodes near coords,only marks,
+point meta=explicit symbolic]
+table [meta=label] {
+x y label
+0.5 0.2 1
+0.2 0.1 t2
+0.7 0.6 3
+0.35 0.4 Y4
+0.65 0.1 5
+};
+\end{axis}
+\end{tikzpicture}
 
 \section{Case Studies and their Methods}
 
 \paragraph{Case 1, project 4a): For case 1, I studied a simple $2\times 2$ lattice, analytical expressions.}
-I assumed that we had only two spins in each dimension, that is $L=2$. I found the analytical expression 
-for the partition function and the corresponding
+I assumed that we had only two spins in each dimension, that is $L=2$. I found the analytical expression for the partition function and the corresponding
 expectations values for the energy $E$, the mean absolute value of the magnetic moment $\vert M\vert$ (in this report refered to this as the mean magnetization), 
 the specific heat $C_V$ and the susceptibility $\chi$ 
-as functions of  $T$ using periodic boundary conditions. I used these results results as benchmark calculations for my next steps.
-
+as functions of  $T$ using periodic boundary conditions. I used these results  as benchmark calculations for my next steps. To perform the computation of the partition function, I first computed the energy for each configuration 2 x 2 lattice using periodic boundary conditions. I assumed scaled values for the constants: $J=1$ (coupling constant)
+ and $k=1$ (for the Boltzmann's constant). I also assumed that the nearest neighbors implies that $s_l$ and $s_k$ take on the values both combinations from the set $\{i,i+1\}$. Therefore, the general expression for each configuration is:\newline
+ \[
+E_i = -J\sum_{<kl>}^{N} s_ls_k
+\]
+\[
+= s_1s_2 + s_2s_1 + s_2s_3 + s_3s_2 + s_3s_4 + s_4s_3 + s_4s_1 + s_1s_4
+\]
+This formula is computed for each configuration. Each configuration is summarized in a 2 x 2 matrix of up and down arrows. Each term in the energy is determined as follows:\newline
+Starting with the upper left element and going clockwise add a term in the energy equation using periodic boundary conditions.
+All spins up or down:
+\[
+\begin{bmatrix}
+\uparrow & \uparrow  \\
+\uparrow & \uparrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\downarrow & \downarrow  \\
+\downarrow & \downarrow  \\ 
+\end{bmatrix}
+\]
+$2$ x $4 \choose 4$ $= 2$\newline
+\[
+E_1 = -J \times 8 \times (1)(1)=-8J
+\]
+\[
+E_2 =  -J \times 8 \times (-1)(-1)=-8J
+\]
+\newline
+I spin down, 3 spins up: $4 \choose 1$ $=4$
+\[
+\begin{bmatrix}
+\downarrow & \uparrow  \\
+\uparrow & \uparrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\uparrow & \downarrow  \\
+\uparrow & \uparrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\uparrow & \uparrow  \\
+\uparrow & \downarrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\uparrow & \uparrow  \\
+\downarrow & \uparrow  \\ 
+\end{bmatrix}
+\]
+\small
+\[
+E_3 = -J(2(-1)(1) + 2(1)(1) + 2(1)(1) + 2(1)(-1)) = 0J
+\]
+\[
+E_4 = -J(2(1)(-1) + 2(-1)(1) + 2(1)(1) + 2(1)(-1)) = 0J
+\]
+\[
+E_5 = -J(2(1)(1) + 2(1)(-1) + 2(-1)(1) + 2(1)(1)) = 0J
+\]
+\[
+E_6 = -J(2(1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(1)) = 0J
+\]
+\normalsize
+\newline
+3 spin down, 1 spins up:
+$4 \choose 3$ $=4$
+\[
+\begin{bmatrix}
+\uparrow & \downarrow  \\
+\downarrow & \downarrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\downarrow & \uparrow  \\
+\downarrow & \downarrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\downarrow & \downarrow  \\
+\uparrow & \downarrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\downarrow & \downarrow  \\
+\downarrow & \uparrow  \\ 
+\end{bmatrix}
+\]
+\small
+\[
+E_7 = -J(2(1)(-1) + 2(-1)(-1) + 2(-1)(-1) + 2(-1)(1)) = 0J
+\]
+\[
+E_8 = -J(2(1)(-1) + 2(-1)(1) + 2(1)(1) + 2(1)(-1)) = 0J
+\]
+\[
+E_9 = -J(2(1)(1) + 2(1)(-1) + 2(-1)(1) + 2(1)(1)) = 0J
+\]
+\[
+E_{10} = -J(2(1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(1)) = 0J
+\]
+\normalsize
+\newline
+2 spins up, 2 spins down $\equiv$ 2 spins down, 2 spins up:\newline
+$4 \choose 2$ $=6$\newline
+Two configurations with alternating states corresponding to maximum disorder, high temperature, and highest energy
+\[
+\begin{bmatrix}
+\uparrow & \downarrow  \\
+\downarrow & \uparrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\downarrow & \uparrow  \\
+\uparrow & \downarrow  \\ 
+\end{bmatrix}
+\]
+\small
+\[
+E_11 = -J(2(1)(-1) + 2(-1)(1) + 2(1)(-1) + 2(-1)(1))=8J
+\]
+\[
+E_12 = -J(2(-1)(1) + 2(1)(-1) + 2(-1)(1) + 2(1)(-1))=8J
+\]
+Four configurations with paired alternating states: 
+\[
+\normalsize
+\begin{bmatrix}
+\uparrow & \uparrow  \\
+\downarrow & \downarrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\downarrow & \downarrow  \\
+\uparrow & \uparrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\uparrow & \downarrow  \\
+\uparrow & \downarrow  \\ 
+\end{bmatrix}
+or
+\begin{bmatrix}
+\downarrow & \uparrow  \\
+ \downarrow & \uparrow  \\ 
+\end{bmatrix}
+\]
+\small
+\[
+E_{13} = -J(2(1)(1) + 2(1)(-1) + 2(-1)(-1) + 2(-1)(1))=0J
+\]
+\[
+E_{14} = -J(2(-1)(-1) + 2(-1)(1) + 2(1)(1) + 2(1)(-1))=0J
+\]
+\[
+E_{15} = -J(2(1)(-1) + 2(-1)(-1) + 2(-1)(1) + 2(1)(1))=0J
+\]
+\[
+E_{16} = -J(2(-1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(-1))=0J
+\]
+\normalsize
 \paragraph{Case 2, project 4b):  For case 2, a C++ program implementing the Ising model.}
 I wrote a C++ program for the Ising model which computes the mean energy 
 $E$, mean magnetization 
@@ -159,7 +323,7 @@ $L=2$ in the $x$ and $y$ directions.
 I compared my results with the expressions from a)
 for  a  temperature $T=1.0$ (in units of $kT/J$). 
 
-I determined the number of Monte Carlo cycles do you need in order to achieve a good agreement.
+I determined the number of Monte Carlo cycles needed in order to achieve a good agreement.
 
 \paragraph{Case 3, project 4c): For case 3, determine when the most likely state reached?}
 I choose now a square lattice with $L=20$ spins in the $x$ and $y$ directions. 
