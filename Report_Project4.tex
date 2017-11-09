@@ -111,15 +111,14 @@ free energy. The corresponding variance is defined as
 {{\sigma}_E}^2 = \langle E^2 \rangle - {\langle E \rangle}^2 = \frac{1}{Z} \sum_{i=1}^{M} {E_i}^2 e^{\beta E_i} - (\frac{1}{Z} \sum_{i=1}^{M} E_i e^{\beta E_i})^2
 \]
 If we divide the latter quantity with $kT^2$ we obtain the specific heat at constant
-volume
+volume. This is the formula I used to calculate the specific heat at constant volume:
 \[
 C_V = \frac{1}{k_B T^2}(\langle  E^2 \rangle - {\langle  E  \rangle}^2)
 \]
 which again can be related to the second derivative of Helmholtz free energy.
 \paragraph{Magnetic moments and susceptibility in the canonical ensemble}
-Using the same prescription, we can also evaluate the mean magnetization
-through
-
+Using the same prescription, I computed the mean magnetization
+with the following formula:
 \[
 \langle M \rangle = \sum_{i}^{M} M_i P_i(\beta) = \frac{1}{Z} \sum_{i}^{M} M_i e^{-\beta E_i}
 \]
@@ -129,10 +128,10 @@ and the corresponding variance
 {{\sigma}_M}^2 = \langle M^2 \rangle - {\langle M \rangle}^2 = \frac{1}{Z} \sum_{i=1}^{M} {M_i}^2 e^{\beta E_i} - (\frac{1}{Z} \sum_{i=1}^{M} M_i e^{\beta E_i})^2
 \]
 
-This quantity defines also the susceptibility $\chi$ with
+This quantity defines also the susceptibility $\chi$ which used to calculate $\chi$:
 
 \[
-C_V = \frac{1}{k_B T^2}(\langle  E^2 \rangle - {\langle  E  \rangle}^2)
+\chi = \frac{1}{k_B T^2}(\langle  M^2 \rangle - {\langle  M  \rangle}^2)
 \]
 
 
