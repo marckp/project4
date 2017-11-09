@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  8 NOV 2017 16:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  9 NOV 2017 13:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -538,8 +538,7 @@ Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 \RaggedLeftParindent=\skip81
 \RaggedRightParindent=\skip82
 \JustifyingParindent=\skip83
-)
-No file Project4.aux.
+) (./Project4.aux)
 \openout1 = `Project4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
@@ -557,7 +556,7 @@ LaTeX Font Info:    ... okay on input line 90.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
 LaTeX Font Info:    ... okay on input line 90.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 90.
-(/usr/local/texlive/2017/texmf-dist/tex/latex/lm/t1lmr.fd
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -622,11 +621,12 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 90.
 LaTeX Info: Redefining \pageref on input line 90.
 LaTeX Info: Redefining \nameref on input line 90.
+
+(./Project4.out) (./Project4.out)
 \@outlinefile=\write5
 \openout5 = `Project4.out'.
 
-
-ABD: EverySelectfont initializing macros
+ ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 90.
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 139.
 
@@ -684,20 +684,14 @@ LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <8> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 166.
  [1
 
-{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-
-LaTeX Warning: Reference `eq:xi' on page 3 undefined on input line 253.
-
-[3]
-
-LaTeX Warning: Reference `eq:tc' on page 4 undefined on input line 293.
-
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 305.
-[4]
+ [4]
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 344.
 
- (/usr/local/texlive/2017/texmf-dist/tex/latex/lm/t1lmtt.fd
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic settings for font family
@@ -812,6 +806,8 @@ RS)
  ucsencs.def    2011/01/21 Fixes to fontencodings LGR, T3
  nameref.sty    2016/05/21 v2.44 Cross-referencing by name of section
 gettitlestring.sty    2016/05/16 v1.5 Cleanup title references (HO)
+Project4.out
+Project4.out
   ot1lmr.fd    2009/10/30 v1.6 Font defs for Latin Modern
   omllmm.fd    2009/10/30 v1.6 Font defs for Latin Modern
  omslmsy.fd    2009/10/30 v1.6 Font defs for Latin Modern
@@ -825,27 +821,15 @@ gettitlestring.sty    2016/05/16 v1.5 Cleanup title references (HO)
  ***********
 
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 434.
-
-Package rerunfilecheck Warning: File `Project4.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Project4.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `Project4.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 434.
  ) 
 Here is how much of TeX's memory you used:
- 10208 strings out of 492995
- 153379 string characters out of 6132704
- 295517 words of memory out of 5000000
- 13442 multiletter control sequences out of 15000+600000
+ 10215 strings out of 492995
+ 153473 string characters out of 6132704
+ 295891 words of memory out of 5000000
+ 13443 multiletter control sequences out of 15000+600000
  51976 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,14n,43p,1005b,400s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -866,10 +850,10 @@ local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texl
 ive/2017/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2017/te
 xmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2017/texmf-dist/fo
 nts/type1/public/lm/lmtt10.pfb>
-Output written on Project4.pdf (6 pages, 253693 bytes).
+Output written on Project4.pdf (6 pages, 253857 bytes).
 PDF statistics:
- 133 PDF objects out of 1000 (max. 8388607)
- 109 compressed objects within 2 object streams
+ 135 PDF objects out of 1000 (max. 8388607)
+ 111 compressed objects within 2 object streams
  26 named destinations out of 1000 (max. 500000)
  17409 words of extra memory for PDF output out of 20736 (max. 10000000)
 
