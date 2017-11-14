@@ -23,20 +23,14 @@
 \affiliation{Institute of Theoretical Astrophysics, University of Oslo}
 
 \begin{abstract}
-The goal of my project is to study Ising model in two dimensions to simulate phase transitions. In this program, I modeled the behavior of an idealized one or two dimensional lattice of spin states, each spin with two states being up or down with corresponding values of $1$ and $-1$, as the model for our system. This is called binary system where the objects at each lattice site can only take two values. This system was treated as a canonical ensemble since atoms are neither added or removed, but energy can be added via a magnetic field or an increase in temperature through the addition of energy. However, in this model the magnetic field is zero. At any instant of time, the spin states for the entire lattice take on a particular configuration or arrange of spin states.We assumed that we had a ferromagnetic ordering, viz $J> 0$.  We used periodic boundary conditions and the Metropolis algorithm only. 
+The goal of my project is to study Ising model in two dimensions to simulate phase transitions. In this program, I modeled the behavior of an idealized one or two dimensional lattice of spin states, each spin with two states being up or down with corresponding values of $1$ and $-1$, as the states for our system. This is called binary system since the objects at each lattice site can only take two values. For this study, the system was treated as a canonical ensemble since atoms are neither added or removed, but energy can be added via a magnetic field or an increase in temperature. However, in this model the magnetic field is zero so that only temperature variations were studied. At any instant of time, the spin states for the entire lattice take on a particular configuration or arrange of spin states.We assumed that we had a ferromagnetic ordering, viz $J> 0$.  We used periodic boundary conditions and the Metropolis algorithm only. 
 To this end, I implemented the model by developing a C++ program. I found that at a given critical temperature, my model exhibited a phase transition from a magnetic phase (a system with a finite magnetic moment) to a phase with zero magnetization.
 \end{abstract}
 
 \maketitle
 
 \section{Introduction.}
-The \href{https://en.wikipedia.org/wiki/Ising_model}{Ising model} has been extremely popular, with applications spanning from studies of phase transitions to simulations in statistics. In one and two dimensions its has analytical solutions to several expectation values and it gives a qualitatively  good understanding of several types of phase transitions.  In its simplest form
-without an externally applied magnetic field, the energy of the Ising model is expressed as 
-\[
-E=-J\sum_{< kl >}^{N}s_ks_l 
-\]
-with $s_k=\pm 1$. The quantity $N$ represents the total number of spins and $J$ is a coupling constant expressing the strength of the interaction between
-neighboring spins.  The symbol $<kl>$ indicates that we sum over nearest neighbors only. 
+The \href{https://en.wikipedia.org/wiki/Ising_model}{Ising model} has been extremely popular, with applications spanning from studies of phase transitions to simulations in statistics. In one and two dimensions its has analytical solutions for several expectation values and it gives a qualitatively  good understanding of several types of phase transitions.
 
 \section{Theoretical Models}
 \paragraph{Summary of Ising model}
@@ -52,7 +46,7 @@ magnetic field interacting with the magnetic moment set up by the spins.
 The symbol $< kl >$ indicates that we sum over nearest neighbors only. Notice that for $J > 0$ 0 it is energetically favorable for neighboring spins to be aligned. This is consistent the tendency for canonical systems is to "seek" the lowest energy state, it is energetically favorable for neighboring spins to be aligned, since alignment means that $s_ks_l  > 0$. This plus  $J>0 \Rightarrow E < 0$ and thus a lower energy state. 
 At low enough temperatures, this feature leads to a cooperative phenomenon called spontaneous magnetization. Thus, a given magnetic moment can influence the alignment of spins that are separated from the given spin by a macroscopic distance by propagation through interactions between nearest neighbors. These long range correlations between spins are associated with a long-range order in which the lattice has a net magnetization in the absence of a magnetic field.
 \paragraph{Boltzmann distribution}
-In order to calculate expectation values such as the mean energy $hE_i$ or magnetization $hM_i$ in statistical physics at a given temperature, I used a probability distribution called the Boltzmann distribution\newline
+In order to calculate expectation values such as the mean energy $\langle E \rangle$ or magnetization $\langle M \rangle$ in statistical physics at a given temperature, I used a probability distribution called the Boltzmann distribution\newline
 \newline
 $P_i(\beta) = \frac{e^{-\beta E_i}}{Z}$\newline
 \newline
@@ -60,9 +54,9 @@ with $\beta = 1/kT$ being the inverse temperature, $k$ the Boltzmann constant, $
 \[
 Z = \sum_{i=1}^{M} e^{-\beta E_i}
 \]
-where the sum extends over all $M$ microstates . $P_i$ expresses the probability of finding the system in a given configuration i.
+where the sum extends over all $M$ microstates . $Z$ is the normalization constant for $P_i$ so that it expresses the probability of finding the system in a given configuration enumerated by $i$. 
 \paragraph{Energy for a specific configuration}
-The energy for a specific configuration i is given by
+The energy for a specific configuration $i$ is given by
 \[
 E_i = -J\sum_{<kl>}^{N} s_ls_k
 \]
@@ -83,13 +77,13 @@ arrangements of the two spins. These four possibilities are\newline
 \paragraph{Boundary conditions}
 What is the energy of each of these configurations?
 For small systems, the way we treat the ends matters. Two cases are often
-used. In the first case one can employ what is called free ends. Instead I used the second case  
+used. In the first case one can employ what is called free ends. In systems with large numbers of elements, the ends contribute a diminishingly small effect on the entire system. However, since I studied small systems, I used   
 Periodic boundary conditions. This means that the
 neighbour to the right of $s_N$ is assumed to take the value of $s_1$. Similarly, the
 neighbour to the left of $s_1$ takes the value $s_N$ . In this case the energy for the
-one-dimensional lattice reads
+one-dimensional lattice 2 x 2 lattice becomes
 \[
-E_i = -J\sum_{j=1}^{N} s_js_{j+1}
+E_i = -J*(s_1s_2 + s_2s_1)
 \]
 For each $i$ we obtain each $E_i$ as follows:\newline\newline
 E1 = $E_{\uparrow \uparrow}$ = -2J\newline
@@ -105,30 +99,30 @@ I calculated the mean energy or using the probability distribution $P_i$ as
 \langle E \rangle =  \frac{1}{Z} \sum_{i=1}^{M} E_i e^{\beta E_i}
 \]
 \paragraph{Energy and specific heat in the canonical ensemble}
-The energy is proportional to the first derivative of the potential, Helmholtz?
+The energy is proportional to the first derivative of the potential, Helmholtz
 free energy. The corresponding variance is defined as
 \[
 {{\sigma}_E}^2 = \langle E^2 \rangle - {\langle E \rangle}^2 = \frac{1}{Z} \sum_{i=1}^{M} {E_i}^2 e^{\beta E_i} - (\frac{1}{Z} \sum_{i=1}^{M} E_i e^{\beta E_i})^2
 \]
 If we divide the latter quantity with $kT^2$ we obtain the specific heat at constant
-volume. This is the formula I used to calculate the specific heat at constant volume:
+volume. 
 \[
 C_V = \frac{1}{k_B T^2}(\langle  E^2 \rangle - {\langle  E  \rangle}^2)
 \]
 which again can be related to the second derivative of Helmholtz free energy.
 \paragraph{Magnetic moments and susceptibility in the canonical ensemble}
-Using the same prescription, I computed the mean magnetization
+Using the same prescription, I computed the mean  of the absolute value of the magnetic moment
 with the following formula:
 \[
-\langle M \rangle = \sum_{i}^{M} M_i P_i(\beta) = \frac{1}{Z} \sum_{i}^{M} M_i e^{-\beta E_i}
+\langle M \rangle = \sum_{i}^{M} | M_i | P_i(\beta) = \frac{1}{Z} \sum_{i}^{M} | M_i | e^{-\beta E_i}
 \]
 and the corresponding variance
 
 \[
-{{\sigma}_M}^2 = \langle M^2 \rangle - {\langle M \rangle}^2 = \frac{1}{Z} \sum_{i=1}^{M} {M_i}^2 e^{\beta E_i} - (\frac{1}{Z} \sum_{i=1}^{M} M_i e^{\beta E_i})^2
+{{\sigma}_M}^2 = \langle M^2 \rangle - {\langle M \rangle}^2 = \frac{1}{Z} \sum_{i=1}^{M} {M_i}^2 e^{\beta E_i} - (\frac{1}{Z} \sum_{i=1}^{M} | M_i | e^{\beta E_i})^2
 \]
 
-This quantity defines also the susceptibility $\chi$ which used to calculate $\chi$:
+This quantity defines also the susceptibility $\chi$ which I used to calculate $\chi$:
 
 \[
 \chi = \frac{1}{k_B T^2}(\langle  M^2 \rangle - {\langle  M  \rangle}^2)
@@ -138,33 +132,32 @@ This quantity defines also the susceptibility $\chi$ which used to calculate $\c
 \section{Algorithms}
 The Metropolis algorithm is summarized as follows.
 In a calculation of the Ising model in two dimensions, the number of configurations
-is given by 2
-N with N = L × L the number of spins for a lattice of length L.
+is given by 2 N with N = L × L the number of spins for a lattice of length L.
 Fortunately, the Metropolis algorithm considers only ratios between probabilities
 and we do not need to compute the partition function at all. The algorithm goes
 as follows: \newline
-1. Establish an initial state with energy Eb by positioning yourself at a random
-configuration in the lattice
-2. Change the initial configuration by flipping e.g., one spin only. Compute
+\begin{enumerate}
+\item Establish an initial state with energy Eb by positioning yourself at a random
+configuration in the lattice.
+\item Change the initial configuration by flipping e.g., one spin only. Compute
 the energy of this trial state $E_t$.
-3. Calculate $-E = E_t - E_b$. The number of values $-E$ is limited to five for
+\item Calculate $-E = E_t - E_b$. The number of values $-E$ is limited to five for
 the Ising model in two dimensions, see the discussion below.
-4. If $-E$ we accept the new configuration, meaning that the energy is
+\item If $-E$ we accept the new configuration, meaning that the energy is
 lowered and we are hopefully moving towards the energy minimum at a
 given temperature. Go to step 7.
-5. If $E > 0$, calculate $w = e$
-6. Compare w with a random number r. If $r ? w$, then accept the new
+\item If $E > 0$, calculate $w = e$
+\item Compare w with a random number r. If $r ? w$, then accept the new
 configuration, else we keep the old configuration.
-7. The next step is to update various expectations values.
-8. The steps (2)-(7) are then repeated in order to obtain a sufficently good
+\item The next step is to update various expectations values.
+\item The steps (2)-(7) are then repeated in order to obtain a sufficently good
 representation of states.
-9. Each time you sweep through the lattice, i.e., when you have summed over
-all spins, constitutes what is called a Monte Carlo cycle. You could think
-of one such cycle as a measurement. At the end, you should divide the
-various expectation values with the total number of cycles. You can choose
-whether you wish to divide by the number of spins or not. If you divide
-with the number of spins as well, your result for e.g., the energy is now
-the energy per spin.\newline
+\end{enumerate}
+Each sweep through the lattice (i.e. when you have summed over
+all the spins in a configuration) constitutes what is called a Monte Carlo cycle. One sweep through the lattice is called a cycle or a measurement. To normalize my measurements, I divided the
+various expectation values with the total number of cycles. ??I choose
+whether you wish to divide by the number of spins to obtain the mean energy as an intensive property of the lattice. In this setting, the energy is now
+the energy per spin.??
 
 \begin{tikzpicture}
 \begin{axis}[
@@ -185,11 +178,9 @@ x y label
 
 \section{Case Studies and their Methods}
 
-\paragraph{Case 1, project 4a): For case 1, I studied a simple $2\times 2$ lattice, analytical expressions.}
-I assumed that we had only two spins in each dimension, that is $L=2$. I found the analytical expression for the partition function and the corresponding
-expectations values for the energy $E$, the mean absolute value of the magnetic moment $\vert M\vert$ (in this report refered to this as the mean magnetization), 
-the specific heat $C_V$ and the susceptibility $\chi$ 
-as functions of  $T$ using periodic boundary conditions. I used these results  as benchmark calculations for my next steps. To perform the computation of the partition function, I first computed the energy for each configuration 2 x 2 lattice using periodic boundary conditions. I assumed scaled values for the constants: $J=1$ (coupling constant)
+\paragraph{Case 1, project 4a): For case 1, I studied a simple $2 \times 2$ lattice, analytical expressions.}
+I assumed that I had only two spins in each dimension, that is $L=2$. That is I modeled a two dimensional lattice consisting of 4 spins with a total of $4^2 = 16$ states. I found the analytical expression for the partition function, the expectations values for the energy $E$,  the mean magnetization $\langle M \rangle$ , the specific heat $C_V$ and the susceptibility $\chi$ 
+as functions of  $T$ using periodic boundary conditions. I used these results  as benchmark calculations for my next steps. To perform the computation of the partition function, I first computed the energy for each configuration of the 2 x 2 lattice using periodic boundary conditions. I assumed the following scaled values for the constants: $J=1$ (coupling constant)
  and $k=1$ (for the Boltzmann's constant). I also assumed that the nearest neighbors implies that $s_l$ and $s_k$ take on the values both combinations from the set $\{i,i+1\}$. Therefore, the general expression for each configuration is:\newline
  \[
 E_i = -J\sum_{<kl>}^{N} s_ls_k
@@ -197,9 +188,10 @@ E_i = -J\sum_{<kl>}^{N} s_ls_k
 \[
 = s_1s_2 + s_2s_1 + s_2s_3 + s_3s_2 + s_3s_4 + s_4s_3 + s_4s_1 + s_1s_4
 \]
-This formula is computed for each configuration. Each configuration is summarized in a 2 x 2 matrix of up and down arrows. Each term in the energy is determined as follows:\newline
+This formula is computed for all 16 configurations. Each configuration is summarized in a 2 x 2 matrix of up and down arrows. Each term in the energy is determined as follows:\newline
 Starting with the upper left element and going clockwise add a term in the energy equation using periodic boundary conditions.
-All spins up or down:
+All spins are either up or down. An up spin is given the value +1, and a down spin is given the value -1. The configurations are organized into permutations of like spin combinations (all up, all down, 1up and 3 down and its complement, 2 up and 2 down).
+\paragraph{A spins up or all spins down}
 \[
 \begin{bmatrix}
 \uparrow & \uparrow  \\
@@ -219,7 +211,8 @@ E_1 = -J \times 8 \times (1)(1)=-8J
 E_2 =  -J \times 8 \times (-1)(-1)=-8J
 \]
 \newline
-I spin down, 3 spins up: $4 \choose 1$ $=4$
+\paragraph{I spin down, 3 spins up}
+$4 \choose 1$ $=4$
 \[
 \begin{bmatrix}
 \downarrow & \uparrow  \\
@@ -256,7 +249,7 @@ E_6 = -J(2(1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(1)) = 0J
 \]
 \normalsize
 \newline
-3 spin down, 1 spins up:
+\paragraph{3 spin down, 1 spins up}
 $4 \choose 3$ $=4$
 \[
 \begin{bmatrix}
@@ -294,7 +287,7 @@ E_{10} = -J(2(1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(1)) = 0J
 \]
 \normalsize
 \newline
-2 spins up, 2 spins down $\equiv$ 2 spins down, 2 spins up:\newline
+\paragraph{2 spins up, 2 spins down $\equiv$ 2 spins down, 2 spins up}
 $4 \choose 2$ $=6$\newline
 Two configurations with alternating states corresponding to maximum disorder, high temperature, and highest energy
 \[
@@ -315,9 +308,9 @@ E_11 = -J(2(1)(-1) + 2(-1)(1) + 2(1)(-1) + 2(-1)(1))=8J
 \[
 E_12 = -J(2(-1)(1) + 2(1)(-1) + 2(-1)(1) + 2(1)(-1))=8J
 \]
-Four configurations with paired alternating states: 
-\[
+\paragraph{Four configurations with paired alternating states} 
 \normalsize
+\[
 \begin{bmatrix}
 \uparrow & \uparrow  \\
 \downarrow & \downarrow  \\ 
@@ -352,6 +345,93 @@ E_{15} = -J(2(1)(-1) + 2(-1)(-1) + 2(-1)(1) + 2(1)(1))=0J
 E_{16} = -J(2(-1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(-1))=0J
 \]
 \normalsize
+\paragraph{computing the partition function}
+\[
+Z = \sum_{1}^{16} e^{-\frac{E_i}{kT}}=\sum_{1}^{16} e^{-\frac{E_i}{T}}
+\]
+which after inserting the values for $E_i$ above becomes:
+\[
+Z = 4 cosh(\frac{8}{T})+12
+\]
+\paragraph{computing the mean energy $\langle E \rangle$}
+\[
+\langle E \rangle = \frac{\sum_{1}^{16} E_i e^{-E_i/T}}{Z}
+\]
+\[
+\langle E \rangle = \frac{-16e^{+\frac{8}{T}} + 16e^{-\frac{8}{T}}}{Z}
+\]
+\[
+\langle E \rangle = \frac{-32(sinh(8/T)}{Z}
+\]
+\[
+\langle E \rangle = \frac{-8sinh(\frac{8}{T})}{cosh(\frac{8}{T})+3}
+\]
+\paragraph{computing the mean square energy $\langle E^2 \rangle$}
+\[
+\langle E^2 \rangle = \frac{\sum_{1}^{16} E_i^2 e^{-E_i/T}}{Z}
+\]
+\[
+\langle E^2 \rangle = \frac{ 64e^{-E_i/T} + 64e^{-E_i/T} + 64e^{E_i/T} + 64e^{E_i/T}}{Z}
+\]
+\[
+\langle E^2 \rangle = \frac{ 256cosh(8/T)}{Z}
+\]
+\[
+\langle E^2 \rangle = \frac{64cosh(8/T)}{cosh(8/T)+3}
+\]
+\paragraph{computing the mean magnetization}
+\[
+\langle M \rangle = \frac{1}{Z} \sum_{1}^{16} |M_i| e^{-\frac{E_i}{T}}
+\]
+\[
+M_i = \pm \frac{1}{2}  \Rightarrow |M_i| = \frac{1}{2}
+\]
+\[
+\langle M \rangle = \frac{1}{Z} \sum_{1}^{16} \frac{1}{2} e^{-\frac{E_i}{T}}
+\]
+\[
+\langle M \rangle = \frac{1}{2} \frac{1}{Z} \sum_{1}^{16}  e^{-\frac{E_i}{T}} = \frac{1}{2} \frac{1}{Z} Z
+\]
+\[
+\langle M \rangle = \frac{1}{2} 
+\]
+\paragraph{computing the mean square magnetization}
+\[
+\langle M^2 \rangle = \frac{1}{Z} \sum_{1}^{16} M_i^2 e^{-\frac{E_i}{T}}
+\]
+\[
+M_i = \pm \frac{1}{2}  \Rightarrow M_i^2 = (\pm\frac{1}{2})^2=\frac{1}{4}
+\]
+\[
+\langle M^2 \rangle = \frac{1}{Z} \sum_{1}^{16} \frac{1}{4} e^{-\frac{E_i}{T}}
+\]
+\[
+\langle M^2 \rangle = \frac{1}{4} \frac{1}{Z} \sum_{1}^{16}  e^{-\frac{E_i}{T}} = \frac{1}{4} \frac{1}{Z}
+\]
+\[
+\langle M^2 \rangle = \frac{1}{4} 
+\]
+\paragraph{computing the Specific Heat at constant volume}
+\[
+C_V = \frac{1}{k_B T^2}(\langle  E^2 \rangle - {\langle  E  \rangle}^2)
+\]
+\[
+C_V = (\frac{64}{T^2})\frac{(1+3\cosh(8/T))}{(\cosh(8/T)+3)}
+\]
+\paragraph{computing the magnetic suseptability}
+\[
+\chi = \frac{1}{k_B T^2}(\langle  M^2 \rangle - {\langle  M  \rangle}^2)
+\]
+\[
+\chi = \frac{1}{T^2}(\frac{1}{4} - (\frac{1}{2})^2)
+\]
+\[
+\chi = \frac{1}{T^2}(\frac{1}{4} - \frac{1}{4})
+\]
+\[
+\chi = 0
+\]
+
 \paragraph{Case 2, project 4b):  For case 2, a C++ program implementing the Ising model.}
 I wrote a C++ program for the Ising model which computes the mean energy 
 $E$, mean magnetization 
