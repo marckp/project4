@@ -54,11 +54,14 @@ with $\beta = 1/kT$ being the inverse temperature, $k$ the Boltzmann constant, $
 \[
 Z = \sum_{i=1}^{M} e^{-\beta E_i}
 \]
-where the sum extends over all $M$ microstates . $Z$ is the normalization constant for $P_i$ so that it expresses the probability of finding the system in a given configuration enumerated by $i$. 
-\paragraph{Energy for a specific configuration}
+where the sum extends over all $M$ microstates . $Z$ is the normalization constant for $P_i$ so that it expresses the probability of finding the system in a given configuration enumerated by $i$.
+\paragraph{Energy and Magnetization for a specific configuration}
 The energy for a specific configuration $i$ is given by
 \[
 E_i = -J\sum_{<kl>}^{N} s_ls_k
+\]
+\[
+M_i = sum_{1}^{N} s_i
 \]
 \paragraph{Configurations}
 To better understand what is meant by a configuration, consider first the case
@@ -77,33 +80,36 @@ arrangements of the two spins. These four possibilities are\newline
 \paragraph{Boundary conditions}
 What is the energy of each of these configurations?
 For small systems, the way we treat the ends matters. Two cases are often
-used. In the first case one can employ what is called free ends. In systems with large numbers of elements, the ends contribute a diminishingly small effect on the entire system. However, since I studied small systems, I used   
+used. In the first case one can employ what is called free ends. In systems with large numbers of elements, the ends contribute a dimishingly small effect on the entire system. However, since I studied small systems, I used   
 Periodic boundary conditions. This means that the
-neighbour to the right of $s_N$ is assumed to take the value of $s_1$. Similarly, the
-neighbour to the left of $s_1$ takes the value $s_N$ . In this case the energy for the
+neighbor to the right of $s_N$ is assumed to take the value of $s_1$. Similarly, the
+neighbor to the left of $s_1$ takes the value $s_N$ . In this case the energy for the
 one-dimensional lattice 2 x 2 lattice becomes
-\[
-E_i = -J*(s_1s_2 + s_2s_1)
-\]
-For each $i$ we obtain each $E_i$ as follows:\newline\newline
-E1 = $E_{\uparrow \uparrow}$ = -2J\newline
-E2 = $E_{\uparrow \downarrow}$ = +2J\newline
-E3 = $E_{\downarrow \uparrow}$ = +2J\newline
-E4 = $E_{\downarrow \downarrow}$ = -2J\newline
+\begin{align*}
+E_i &= -J*(s_1s_2 + s_2s_1) \\
+M_i &= \sum_{1}^{N} s_i \\
+\intertext{For each $i$ we obtain each $E_i$ as follows:} \\
+E1 &= E_{\uparrow \uparrow} = -2J \\
+E2 &= E_{\uparrow \downarrow} = +2J \\
+E3 &= E_{\downarrow \uparrow} = +2J \\
+E4 &= E_{\downarrow \downarrow} = -2J \\
+\end{align*}
 
 For a system described by the canonical ensemble, the energy is an expectation
 value since we allow energy to be exchanged with the surroundings (a heat bath
 with temperature T).
-I calculated the mean energy or using the probability distribution $P_i$ as
-\[
-\langle E \rangle =  \frac{1}{Z} \sum_{i=1}^{M} E_i e^{\beta E_i}
-\]
+I calculated the mean energy and magnetization using the probability distribution $P_i$ as
+\begin{align*}
+\langle E \rangle &=  \frac{1}{Z} \sum_{i=1}^{M} E_i e^{\beta E_i} \\
+\langle M \rangle &=  \frac{1}{Z} \sum_{i=1}^{M} M_i e^{\beta E_i} \\
+\end{align*}
 \paragraph{Energy and specific heat in the canonical ensemble}
 The energy is proportional to the first derivative of the potential, Helmholtz
 free energy. The corresponding variance is defined as
-\[
-{{\sigma}_E}^2 = \langle E^2 \rangle - {\langle E \rangle}^2 = \frac{1}{Z} \sum_{i=1}^{M} {E_i}^2 e^{\beta E_i} - (\frac{1}{Z} \sum_{i=1}^{M} E_i e^{\beta E_i})^2
-\]
+\begin{align*}
+{{\sigma}_E}^2 &= \langle E^2 \rangle - {\langle E \rangle}^2 \\
+&= \frac{1}{Z} \sum_{i=1}^{M} {E_i}^2 e^{\beta E_i} - (\frac{1}{Z} \sum_{i=1}^{M} E_i e^{\beta E_i})^2
+\end{align*}
 If we divide the latter quantity with $kT^2$ we obtain the specific heat at constant
 volume. 
 \[
@@ -113,20 +119,15 @@ which again can be related to the second derivative of Helmholtz free energy.
 \paragraph{Magnetic moments and susceptibility in the canonical ensemble}
 Using the same prescription, I computed the mean  of the absolute value of the magnetic moment
 with the following formula:
-\[
-\langle M \rangle = \sum_{i}^{M} | M_i | P_i(\beta) = \frac{1}{Z} \sum_{i}^{M} | M_i | e^{-\beta E_i}
-\]
-and the corresponding variance
-
-\[
-{{\sigma}_M}^2 = \langle M^2 \rangle - {\langle M \rangle}^2 = \frac{1}{Z} \sum_{i=1}^{M} {M_i}^2 e^{\beta E_i} - (\frac{1}{Z} \sum_{i=1}^{M} | M_i | e^{\beta E_i})^2
-\]
-
-This quantity defines also the susceptibility $\chi$ which I used to calculate $\chi$:
-
-\[
-\chi = \frac{1}{k_B T^2}(\langle  M^2 \rangle - {\langle  M  \rangle}^2)
-\]
+\begin{align*}
+\langle M \rangle &= \sum_{i}^{M} | M_i | P_i(\beta) \\
+&= \frac{1}{Z} \sum_{i}^{M} | M_i | e^{-\beta E_i} \\
+\intertext{and the corresponding variance} \\
+{{\sigma}_M}^2 &= \langle M^2 \rangle - {\langle M \rangle}^2 \\
+&= \frac{1}{Z} \sum_{i=1}^{M} {M_i}^2 e^{\beta E_i} - (\frac{1}{Z}  \sum_{i=1}^{M} | M_i | e^{\beta E_i})^2 \\
+\intertext{This quantity defines also the susceptibility $\chi$ which I used to calculate $\chi$:} \\
+chi &= \frac{1}{k_B T^2}(\langle  M^2 \rangle - {\langle  M  \rangle}^2) 
+\end{align*}
 
 
 \section{Algorithms}
@@ -181,7 +182,8 @@ x y label
 \paragraph{Case 1, project 4a): For case 1, I studied a simple $2 \times 2$ lattice, analytical expressions.}
 I assumed that I had only two spins in each dimension, that is $L=2$. That is I modeled a two dimensional lattice consisting of 4 spins with a total of $4^2 = 16$ states. I found the analytical expression for the partition function, the expectations values for the energy $E$,  the mean magnetization $\langle M \rangle$ , the specific heat $C_V$ and the susceptibility $\chi$ 
 as functions of  $T$ using periodic boundary conditions. I used these results  as benchmark calculations for my next steps. To perform the computation of the partition function, I first computed the energy for each configuration of the 2 x 2 lattice using periodic boundary conditions. I assumed the following scaled values for the constants: $J=1$ (coupling constant)
- and $k=1$ (for the Boltzmann's constant). I also assumed that the nearest neighbors implies that $s_l$ and $s_k$ take on the values both combinations from the set $\{i,i+1\}$. Therefore, the general expression for each configuration is:\newline
+ and $k=1$ (for the Boltzmann's constant). 
+ I also assumed that the nearest neighbors implies that $s_l$ and $s_k$ take on the values both combinations from the set $\{i,i+1\}$. Therefore, the general expression for each configuration is:\newline
  \[
 E_i = -J\sum_{<kl>}^{N} s_ls_k
 \]
@@ -190,7 +192,9 @@ E_i = -J\sum_{<kl>}^{N} s_ls_k
 \]
 This formula is computed for all 16 configurations. Each configuration is summarized in a 2 x 2 matrix of up and down arrows. Each term in the energy is determined as follows:\newline
 Starting with the upper left element and going clockwise add a term in the energy equation using periodic boundary conditions.
-All spins are either up or down. An up spin is given the value +1, and a down spin is given the value -1. The configurations are organized into permutations of like spin combinations (all up, all down, 1up and 3 down and its complement, 2 up and 2 down).
+All spins are either up or down. An up spin is given the value +1, and a down spin is given the value -1.
+\paragraph{computing the Energy and Magnetization for each configuration}
+The configurations are organized into permutations of like spin combinations (all up, all down, 1up and 3 down and its complement, 2 up and 2 down).
 \paragraph{A spins up or all spins down}
 \[
 \begin{bmatrix}
@@ -204,13 +208,12 @@ or
 \end{bmatrix}
 \]
 $2$ x $4 \choose 4$ $= 2$\newline
-\[
-E_1 = -J \times 8 \times (1)(1)=-8J
-\]
-\[
-E_2 =  -J \times 8 \times (-1)(-1)=-8J
-\]
-\newline
+\begin{align*}
+E_1 &= -J \times 8 \times (1)(1)&=-8J \\
+E_2 &=  -J \times 8 \times (-1)(-1)&=-8J \\
+M_1 &=  4 \times 1 &= 4 \\
+M_2 &=  4 \times -1 &= -4 \\
+\end{align*}
 \paragraph{I spin down, 3 spins up}
 $4 \choose 1$ $=4$
 \[
@@ -234,21 +237,19 @@ or
 \downarrow & \uparrow  \\ 
 \end{bmatrix}
 \]
-\small
-\[
-E_3 = -J(2(-1)(1) + 2(1)(1) + 2(1)(1) + 2(1)(-1)) = 0J
-\]
-\[
-E_4 = -J(2(1)(-1) + 2(-1)(1) + 2(1)(1) + 2(1)(-1)) = 0J
-\]
-\[
-E_5 = -J(2(1)(1) + 2(1)(-1) + 2(-1)(1) + 2(1)(1)) = 0J
-\]
-\[
-E_6 = -J(2(1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(1)) = 0J
-\]
+\tiny
+\begin{align*}
+E_3 &= -J(2(-1)(1) + 2(1)(1) + 2(1)(1) + 2(1)(-1)) &= 0J \\
+E_4 &= -J(2(1)(-1) + 2(-1)(1) + 2(1)(1) + 2(1)(-1)) &= 0J \\
+E_5 &= -J(2(1)(1) + 2(1)(-1) + 2(-1)(1) + 2(1)(1)) &= 0J \\
+E_6 &= -J(2(1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(1)) &= 0J \\
+M_3 &= -1 + 3*1 &= 2 \\ 
+M_4 &= -1 + 3*1 &= 2 \\
+M_5 &= -1 + 3*1 &= 2 \\
+M_6 &= -1 + 3*1 &= 2 \\
+\end{align*}
 \normalsize
-\newline
+
 \paragraph{3 spin down, 1 spins up}
 $4 \choose 3$ $=4$
 \[
@@ -272,19 +273,17 @@ or
 \downarrow & \uparrow  \\ 
 \end{bmatrix}
 \]
-\small
-\[
-E_7 = -J(2(1)(-1) + 2(-1)(-1) + 2(-1)(-1) + 2(-1)(1)) = 0J
-\]
-\[
-E_8 = -J(2(1)(-1) + 2(-1)(1) + 2(1)(1) + 2(1)(-1)) = 0J
-\]
-\[
-E_9 = -J(2(1)(1) + 2(1)(-1) + 2(-1)(1) + 2(1)(1)) = 0J
-\]
-\[
-E_{10} = -J(2(1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(1)) = 0J
-\]
+\tiny
+\begin{align*}
+E_7 &= -J(2(1)(-1) + 2(-1)(-1) + 2(-1)(-1) + 2(-1)(1)) &= 0J \\
+E_8 &= -J(2(1)(-1) + 2(-1)(1) + 2(1)(1) + 2(1)(-1)) &= 0J \\
+E_9 &= -J(2(1)(1) + 2(1)(-1) + 2(-1)(1) + 2(1)(1)) &= 0J \\
+E_{10} &= -J(2(1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(1)) &= 0J  \\
+M_3 &= +1 + 3*(-1) &= -2  \\
+M_4 &= +1 + 3*(-1) &= -2  \\
+M_5 &= +1 + 3*(-1) &= -2 \\
+M_6 &= +1 + 3*(-1) &= -2 \\
+\end{align*}
 \normalsize
 \newline
 \paragraph{2 spins up, 2 spins down $\equiv$ 2 spins down, 2 spins up}
@@ -302,12 +301,12 @@ or
 \end{bmatrix}
 \]
 \small
-\[
-E_11 = -J(2(1)(-1) + 2(-1)(1) + 2(1)(-1) + 2(-1)(1))=8J
-\]
-\[
-E_12 = -J(2(-1)(1) + 2(1)(-1) + 2(-1)(1) + 2(1)(-1))=8J
-\]
+\begin{align*}
+E_11 &= -J(2(1)(-1) + 2(-1)(1) + 2(1)(-1) + 2(-1)(1))&=8J \\
+E_12 &= -J(2(-1)(1) + 2(1)(-1) + 2(-1)(1) + 2(1)(-1))&=8J\\
+M_11 &= 2(1) + 2(-1) &= 0\\
+M_12 &= 2(-1) + 2(1) &= 0\\
+\end{align*}
 \paragraph{Four configurations with paired alternating states} 
 \normalsize
 \[
@@ -332,105 +331,77 @@ or
 \end{bmatrix}
 \]
 \small
-\[
-E_{13} = -J(2(1)(1) + 2(1)(-1) + 2(-1)(-1) + 2(-1)(1))=0J
-\]
-\[
-E_{14} = -J(2(-1)(-1) + 2(-1)(1) + 2(1)(1) + 2(1)(-1))=0J
-\]
-\[
-E_{15} = -J(2(1)(-1) + 2(-1)(-1) + 2(-1)(1) + 2(1)(1))=0J
-\]
-\[
-E_{16} = -J(2(-1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(-1))=0J
-\]
+\begin{align*}
+E_{13} &= -J(2(1)(1) + 2(1)(-1) + 2(-1)(-1) + 2(-1)(1))&=0J\\
+E_{14} &= -J(2(-1)(-1) + 2(-1)(1) + 2(1)(1) + 2(1)(-1))&=0J\\
+E_{15} &= -J(2(1)(-1) + 2(-1)(-1) + 2(-1)(1) + 2(1)(1))&=0J\\
+E_{16} &= -J(2(-1)(1) + 2(1)(1) + 2(1)(-1) + 2(-1)(-1))&=0J\\
+M_{13} &= 2(1) + 2(-1) &= 0\\
+M_{14} &= 2(1) + 2(-1) &= 0\\
+M_{15} &= 2(1) + 2(-1) &= 0\\
+M_{16} &= 2(1) + 2(-1) &= 0\\
+\end{align*}
+
 \normalsize
+\begin{table}
+\caption{List of spin configurations with energy and magnetic moment}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Number of up-spins & Degeneracy & Energy & Magnetization\\
+\hline
+4&1&-8J&4\\
+\hline
+3&4&0&2\\
+\hline
+2&4&0&0\\
+\hline
+2&2&8J&0\\
+\hline
+1&4&0&-2\\
+\hline
+0&1&-8J&-4\\
+\hline
+\end{tabular}
+\label{tab:energies}
+\end{table}
 \paragraph{computing the partition function}
-\[
-Z = \sum_{1}^{16} e^{-\frac{E_i}{kT}}=\sum_{1}^{16} e^{-\frac{E_i}{T}}
-\]
-which after inserting the values for $E_i$ above becomes:
-\[
-Z = 4 cosh(\frac{8}{T})+12
-\]
-\paragraph{computing the mean energy $\langle E \rangle$}
-\[
-\langle E \rangle = \frac{\sum_{1}^{16} E_i e^{-E_i/T}}{Z}
-\]
-\[
-\langle E \rangle = \frac{-16e^{+\frac{8}{T}} + 16e^{-\frac{8}{T}}}{Z}
-\]
-\[
-\langle E \rangle = \frac{-32(sinh(8/T)}{Z}
-\]
-\[
-\langle E \rangle = \frac{-8sinh(\frac{8}{T})}{cosh(\frac{8}{T})+3}
-\]
-\paragraph{computing the mean square energy $\langle E^2 \rangle$}
-\[
-\langle E^2 \rangle = \frac{\sum_{1}^{16} E_i^2 e^{-E_i/T}}{Z}
-\]
-\[
-\langle E^2 \rangle = \frac{ 64e^{-E_i/T} + 64e^{-E_i/T} + 64e^{E_i/T} + 64e^{E_i/T}}{Z}
-\]
-\[
-\langle E^2 \rangle = \frac{ 256cosh(8/T)}{Z}
-\]
-\[
-\langle E^2 \rangle = \frac{64cosh(8/T)}{cosh(8/T)+3}
-\]
-\paragraph{computing the mean magnetization}
-\[
-\langle M \rangle = \frac{1}{Z} \sum_{1}^{16} |M_i| e^{-\frac{E_i}{T}}
-\]
-\[
-M_i = \pm \frac{1}{2}  \Rightarrow |M_i| = \frac{1}{2}
-\]
-\[
-\langle M \rangle = \frac{1}{Z} \sum_{1}^{16} \frac{1}{2} e^{-\frac{E_i}{T}}
-\]
-\[
-\langle M \rangle = \frac{1}{2} \frac{1}{Z} \sum_{1}^{16}  e^{-\frac{E_i}{T}} = \frac{1}{2} \frac{1}{Z} Z
-\]
-\[
-\langle M \rangle = \frac{1}{2} 
-\]
-\paragraph{computing the mean square magnetization}
-\[
-\langle M^2 \rangle = \frac{1}{Z} \sum_{1}^{16} M_i^2 e^{-\frac{E_i}{T}}
-\]
-\[
-M_i = \pm \frac{1}{2}  \Rightarrow M_i^2 = (\pm\frac{1}{2})^2=\frac{1}{4}
-\]
-\[
-\langle M^2 \rangle = \frac{1}{Z} \sum_{1}^{16} \frac{1}{4} e^{-\frac{E_i}{T}}
-\]
-\[
-\langle M^2 \rangle = \frac{1}{4} \frac{1}{Z} \sum_{1}^{16}  e^{-\frac{E_i}{T}} = \frac{1}{4} \frac{1}{Z}
-\]
-\[
-\langle M^2 \rangle = \frac{1}{4} 
-\]
-\paragraph{computing the Specific Heat at constant volume}
-\[
-C_V = \frac{1}{k_B T^2}(\langle  E^2 \rangle - {\langle  E  \rangle}^2)
-\]
-\[
-C_V = (\frac{64}{T^2})\frac{(1+3\cosh(8/T))}{(\cosh(8/T)+3)}
-\]
-\paragraph{computing the magnetic suseptability}
-\[
-\chi = \frac{1}{k_B T^2}(\langle  M^2 \rangle - {\langle  M  \rangle}^2)
-\]
-\[
-\chi = \frac{1}{T^2}(\frac{1}{4} - (\frac{1}{2})^2)
-\]
-\[
-\chi = \frac{1}{T^2}(\frac{1}{4} - \frac{1}{4})
-\]
-\[
-\chi = 0
-\]
+\small
+\begin{align*}
+Z &= \sum_{1}^{16} e^{-\frac{E_i}{kT}}=\sum_{1}^{16} e^{-\frac{E_i}{T}} \\
+\intertext{which after inserting the values for $E_i$ above becomes:} \\
+Z &= 4 cosh(\frac{8}{T})+12 \\
+\intertext{computing the mean energy $\langle E \rangle$} \\
+\langle E \rangle &= \frac{\sum_{1}^{16} E_i e^{-E_i/T}}{Z} \\
+\langle E \rangle &= \frac{-16e^{+\frac{8}{T}} + 16e^{-\frac{8}{T}}}{Z} \\
+\langle E \rangle &= \frac{-32(sinh(8/T)}{Z} \\
+\langle E \rangle &= \frac{-8sinh(\frac{8}{T})}{cosh(\frac{8}{T})+3} \\
+\intertext{computing the mean square energy $\langle E^2 \rangle$} \\
+\langle E^2 \rangle &= \frac{\sum_{1}^{16} E_i^2 e^{-E_i/T}}{Z} \\
+&= 16e^{+8/T} + 4(4) + 0 + 0 + 4(4) + 16e^{+8/T} \\
+&= 8(e^{8/T} + 1)/(\cosh(8/T)+3)\\
+&= \\
+\intertext{computing the mean magnetization} \\
+\langle |M| \rangle &= \frac{1}{Z} \sum_{1}^{16} |M_i| e^{-\frac{E_i}{T}} \\
+&= \frac{1}{Z} \sum_{1}^{16} \frac{1}{2} e^{-\frac{E_i}{T}} \\
+&= 4e^{8/T} + 4e^{-8//T} + 2(4)e^0 + 2(4)e^0 + 0e^{8/T} + 0e^{8/T}/Z  \\
+&= (4e^{+8/T} + 4e^{-8/T} + 16)/Z \\
+&= (8\cosh(8/T) + 16)/Z \\
+&= (8\cosh(8/T) + 2)/(4\cosh(8/T)+12) \\
+&= 2(\cosh(8/T) + 2)/(\cosh(8/T)+3) 
+\intertext{computing the mean square magnetization} \\
+\langle M^2 \rangle &= \frac{1}{Z} \sum_{1}^{16} M_i^2 e^{-\frac{E_i}{T}} \\
+\langle M^2 \rangle &= \frac{1}{Z} \sum_{1}^{16} \frac{1}{4} e^{-\frac{E_i}{T}} \\
+\langle M^2 \rangle &= \frac{1}{4} \frac{1}{Z} \sum_{1}^{16}  e^{-\frac{E_i}{T}} = \frac{1}{4} \frac{1}{Z} \\
+\langle M^2 \rangle &= \frac{1}{4} \\
+\intertext{computing the Specific Heat at constant volume} \\
+C_V &= \frac{1}{k_B T^2}(\langle  E^2 \rangle - {\langle  E  \rangle}^2) \\
+C_V &= (\frac{64}{T^2})\frac{(1+3\cosh(8/T))}{(\cosh(8/T)+3)^2} \\
+\intertext{computing the magnetic suseptability} \\
+\chi &= \frac{1}{k_B T^2}(\langle  M^2 \rangle - {\langle  M  \rangle}^2) \\
+\chi &= \frac{1}{T^2}(\frac{1}{4} - (\frac{1}{2})^2) \\
+\chi &= \frac{1}{T^2}(\frac{1}{4} - \frac{1}{4}) \\
+\chi &= 0 
+\end{align*}
 
 \paragraph{Case 2, project 4b):  For case 2, a C++ program implementing the Ising model.}
 I wrote a C++ program for the Ising model which computes the mean energy 
@@ -582,7 +553,7 @@ figure X showed how the number of accepted configurations behaved as function of
 If you wish to read more about the Ising model and statistical physics here are three suggestions.
 
 \begin{itemize}
-  \item \href{{http://www.worldscientific.com/worldscibooks/10.1142/5660}}{M. Plischke and B. Bergersen}, \emph{Equilibrium Statistical Physics}, World Scientific, see chapters 5 and 6.
+ \item \href{{http://www.worldscientific.com/worldscibooks/10.1142/5660}}{M. Plischke and B. Bergersen}, \emph{Equilibrium Statistical Physics}, World Scientific, see chapters 5 and 6.
 
   \item \href{{http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB}}{D. P. Landau and K. Binder}, \emph{A Guide to Monte Carlo Simulations in Statistical Physics}, Cambridge, see chapters 2,3 and 4.
 
