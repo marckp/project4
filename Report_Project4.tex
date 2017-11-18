@@ -138,17 +138,15 @@ Fortunately, the Metropolis algorithm considers only ratios between probabilitie
 and we do not need to compute the partition function at all. The algorithm goes
 as follows: \newline
 \begin{enumerate}
-\item Establish an initial state with energy Eb by positioning yourself at a random
-configuration in the lattice.
+\item Establish an initial state for the configuration with energy E by creating a random configuration of the spin states for the lattice.
 \item Change the initial configuration by flipping e.g., one spin only. Compute
 the energy of this trial state $E_t$.
-\item Calculate $-E = E_t - E_b$. The number of values $-E$ is limited to five for
-the Ising model in two dimensions, see the discussion below.
-\item If $-E$ we accept the new configuration, meaning that the energy is
+\item Calculate $\delta E = E_t - E_b$.
+\item If $\delta E<0$ we accept the new configuration, meaning that the energy is
 lowered and we are hopefully moving towards the energy minimum at a
 given temperature. Go to step 7.
-\item If $E > 0$, calculate $w = e$
-\item Compare w with a random number r. If $r ? w$, then accept the new
+\item If $\delta E > 0$, calculate $w = e^{\beta T}$
+\item Compare w with a random number $r$ selected using a uniform distribution over $[0,1]$. If $r < w$, then accept the new
 configuration, else we keep the old configuration.
 \item The next step is to update various expectations values.
 \item The steps (2)-(7) are then repeated in order to obtain a sufficently good
@@ -156,9 +154,9 @@ representation of states.
 \end{enumerate}
 Each sweep through the lattice (i.e. when you have summed over
 all the spins in a configuration) constitutes what is called a Monte Carlo cycle. One sweep through the lattice is called a cycle or a measurement. To normalize my measurements, I divided the
-various expectation values with the total number of cycles. ??I choose
+various expectation values with the total number of cycles. I choose
 whether you wish to divide by the number of spins to obtain the mean energy as an intensive property of the lattice. In this setting, the energy is now
-the energy per spin.??
+the energy per spin.
 
 \begin{tikzpicture}
 \begin{axis}[
@@ -372,35 +370,34 @@ Z &= \sum_{1}^{16} e^{-\frac{E_i}{kT}}=\sum_{1}^{16} e^{-\frac{E_i}{T}} \\
 Z &= 4 cosh(\frac{8}{T})+12 \\
 \intertext{computing the mean energy $\langle E \rangle$} \\
 \langle E \rangle &= \frac{\sum_{1}^{16} E_i e^{-E_i/T}}{Z} \\
-\langle E \rangle &= \frac{-16e^{+\frac{8}{T}} + 16e^{-\frac{8}{T}}}{Z} \\
-\langle E \rangle &= \frac{-32(sinh(8/T)}{Z} \\
-\langle E \rangle &= \frac{-8sinh(\frac{8}{T})}{cosh(\frac{8}{T})+3} \\
+&= \frac{-16e^{+\frac{8}{T}} + 16e^{-\frac{8}{T}}}{Z} \\
+&= \frac{-32(sinh(8/T)}{Z} \\
+&= \frac{-8sinh(\frac{8}{T})}{cosh(\frac{8}{T})+3} \\
 \intertext{computing the mean square energy $\langle E^2 \rangle$} \\
 \langle E^2 \rangle &= \frac{\sum_{1}^{16} E_i^2 e^{-E_i/T}}{Z} \\
-&= 16e^{+8/T} + 4(4) + 0 + 0 + 4(4) + 16e^{+8/T} \\
-&= 8(e^{8/T} + 1)/(\cosh(8/T)+3)\\
-&= \\
+&= \frac{128e^{+8/T} + 0 + 0 + 0 + 128e^{-8/T}}{Z} \\
+&= 256(cosh(8/T))/(4cosh(8/T)+12) \\
+&= 256\frac{cosh(8/T)}{(4cosh(8/T)+12)} \\
+&= 64\frac{cosh(8/T)}{(cosh(8/T)+3)} \\
 \intertext{computing the mean magnetization} \\
 \langle |M| \rangle &= \frac{1}{Z} \sum_{1}^{16} |M_i| e^{-\frac{E_i}{T}} \\
-&= \frac{1}{Z} \sum_{1}^{16} \frac{1}{2} e^{-\frac{E_i}{T}} \\
-&= 4e^{8/T} + 4e^{-8//T} + 2(4)e^0 + 2(4)e^0 + 0e^{8/T} + 0e^{8/T}/Z  \\
-&= (4e^{+8/T} + 4e^{-8/T} + 16)/Z \\
-&= (8\cosh(8/T) + 16)/Z \\
-&= (8\cosh(8/T) + 2)/(4\cosh(8/T)+12) \\
-&= 2(\cosh(8/T) + 2)/(\cosh(8/T)+3) 
+&= 4e^{+8/T}+4(2) + 0 + 0 + 0 + 4(2) + 4e^{+8/T}/Z  \\
+&= \frac{(4e^{+8/T} + 4e^{+8/T} + 16)}{Z} \\
+&= \frac{(8e^{+8/T} + 16)}{Z} \\
+&= \frac{8(e^{+8/T} +2)}{(4cosh(8/T)+12)} \\
+&= \frac{2(e^{+8/T} +2)}{(cosh(8/T)+3)} \\
 \intertext{computing the mean square magnetization} \\
 \langle M^2 \rangle &= \frac{1}{Z} \sum_{1}^{16} M_i^2 e^{-\frac{E_i}{T}} \\
-\langle M^2 \rangle &= \frac{1}{Z} \sum_{1}^{16} \frac{1}{4} e^{-\frac{E_i}{T}} \\
-\langle M^2 \rangle &= \frac{1}{4} \frac{1}{Z} \sum_{1}^{16}  e^{-\frac{E_i}{T}} = \frac{1}{4} \frac{1}{Z} \\
-\langle M^2 \rangle &= \frac{1}{4} \\
+&= 16e^{+8/T}+4(4) + 0 + 0 + 0 + 4(4) + 16e^{+8/T}/Z\\
+&= 32e^{+8/T} + 32/Z\\
+&= 32e^{+8/T} + 32/(4cosh(8/T)+12)\\
+&= 8(e^{+8/T} + 1)/(cosh(8/T)+3) \\
 \intertext{computing the Specific Heat at constant volume} \\
 C_V &= \frac{1}{k_B T^2}(\langle  E^2 \rangle - {\langle  E  \rangle}^2) \\
-C_V &= (\frac{64}{T^2})\frac{(1+3\cosh(8/T))}{(\cosh(8/T)+3)^2} \\
+&= (\frac{64}{T^2})\frac{(1+3\cosh(8/T))}{(\cosh(8/T)+3)^2} \\
 \intertext{computing the magnetic suseptability} \\
 \chi &= \frac{1}{k_B T^2}(\langle  M^2 \rangle - {\langle  M  \rangle}^2) \\
-\chi &= \frac{1}{T^2}(\frac{1}{4} - (\frac{1}{2})^2) \\
-\chi &= \frac{1}{T^2}(\frac{1}{4} - \frac{1}{4}) \\
-\chi &= 0 
+&= \frac{1}{k_B T^2}(\frac{8(e^{+8/T} + 1)}{(cosh(8/T)+3)} - (\frac{2(e^{+8/T} +2)}{(cosh(8/T)+3)})^2)\\
 \end{align*}
 
 \paragraph{Case 2, project 4b):  For case 2, a C++ program implementing the Ising model.}
