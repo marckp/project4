@@ -8,3 +8,4 @@ LIBS += -larmadillo -llapack -lblas
 INCLUDEPATH += /usr/local/include
 
 SOURCES += main_analytical_results.cpp
+

@@ -162,24 +162,30 @@ void initialize(int n_spins, int **spin_matrix,
     }
   }
 }// end function initialise
-
+// implementation of the Metropolis algorithm
 void Metropolis(int n_spins, long& idum, int **spin_matrix, double& E, double&M, double *w)
 {
   // loop over all spins
-  for(int y =0; y < n_spins; y++) {
-    for (int x= 0; x < n_spins; x++){
-      int ix = (int) (ran2(&idum)*(double)n_spins);
-      int iy = (int) (ran2(&idum)*(double)n_spins);
-      int deltaE =  2*spin_matrix[iy][ix]*
-    (spin_matrix[iy][periodic(ix,n_spins,-1)]+
-     spin_matrix[periodic(iy,n_spins,-1)][ix] +
-     spin_matrix[iy][periodic(ix,n_spins,1)] +
-     spin_matrix[periodic(iy,n_spins,1)][ix]);
-      if ( ran2(&idum) <= w[deltaE+8] ) {
-        spin_matrix[iy][ix] *= -1.0;  // flip one spin and accept new spin config
-        M += (double) 2*spin_matrix[iy][ix];
-        E += (double) deltaE;
-      }
+  for(int y =0; y < n_spins; y++)
+  {
+    for (int x= 0; x < n_spins; x++)
+    {
+        // select a random spin element in the lattice
+        int ix = (int) (ran2(&idum)*(double)n_spins);
+        int iy = (int) (ran2(&idum)*(double)n_spins);
+        int deltaE =  2*spin_matrix[iy][ix]*
+        (spin_matrix[iy][periodic(ix,n_spins,-1)]+
+        spin_matrix[periodic(iy,n_spins,-1)][ix] +
+        spin_matrix[iy][periodic(ix,n_spins,1)] +
+        spin_matrix[periodic(iy,n_spins,1)][ix]);
+        // determine if the new state is to be accepted or rejected according to the metropolis algorithm
+        if ( ran2(&idum) <= w[deltaE+8] )
+        {
+            spin_matrix[iy][ix] *= -1.0;  // flip one spin and accept new spin config
+            // update magnetization and energy values for the new configuration
+            M += (double) 2*spin_matrix[iy][ix];
+            E += (double) deltaE;
+        }
     }
   }
 } // end of Metropolis sampling over spins

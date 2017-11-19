@@ -102,16 +102,20 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
         {
             for(int y = 0; y < NSpins; y++)
             {
+                // select a random spin element in the lattice
                 int ix = (int)(RandomNumberGenerator(gen)*(double)NSpins);
                 int iy = (int)(RandomNumberGenerator(gen)*(double)NSpins);
+                // compute the change in energy as a result of fliping the randomly selected spin
                 int deltaE = 2*SpinMatrix(ix, iy)*
                         (SpinMatrix(ix, PeriodicBoundary(iy, NSpins, -1)) +
                          SpinMatrix(PeriodicBoundary(ix, NSpins, -1), iy) +
                          SpinMatrix(ix, PeriodicBoundary(iy, NSpins, 1)) +
                          SpinMatrix(PeriodicBoundary(ix, NSpins, 1), iy));
+                // determine if the new state is to be accepted or rejected according to the metropolis algorithm
                 if (RandomNumberGenerator(gen) <= EnergyDifference(deltaE+8) )
                 {
                     SpinMatrix(ix, iy) *= -1.0; //flip one spin and accept new spin config
+                    // update magnetization and energy values for the new configuration and accepted state counter
                     MagneticMoment += (double) 2*SpinMatrix(ix, iy);
                     Energy += (double) deltaE;
                     counter += 1;
@@ -131,6 +135,7 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
 
 //functon to initialize energy, spin matrix and magnetization
 void InitializeLattice(int NSpins, mat &SpinMatrix, double& Energy, double& MagneticMoment){
+    //setup initial energy (change the code here to initialize with an ordered or random configuration
     // setup spin matrix and initial magnetization
     srand(time(NULL));
     for(int x = 0; x < NSpins; x++){
@@ -140,14 +145,14 @@ void InitializeLattice(int NSpins, mat &SpinMatrix, double& Energy, double& Magn
             if (double(rand())*invers_period > 0.5) {
                 SpinMatrix(x,y) = 1.0;
             }
-            else {
+            else
+            {
                 SpinMatrix(x,y) = -1.0;
             }
 
             MagneticMoment += (double)SpinMatrix(x,y);
         }
     }
-    //setup initial energy
     for(int x = 0; x < NSpins; x++)
     {
         for(int y = 0; y < NSpins; y++)
@@ -159,7 +164,8 @@ void InitializeLattice(int NSpins, mat &SpinMatrix, double& Energy, double& Magn
         }
     }
 }//end function
-
+// Write the results of each MC cycle to the output file
+// Can be change to write different values as needed
 void WriteResultsToFile(int NSpins, int MCcycles, double temperature, vec ExpectationValues , int counter)
 {
     double norm                     = 1.0/((double) (MCcycles));  // divided by  number of cycles
