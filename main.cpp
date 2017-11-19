@@ -176,7 +176,7 @@ void Metropolis(int n_spins, long& idum, int **spin_matrix, double& E, double&M,
      spin_matrix[iy][periodic(ix,n_spins,1)] +
      spin_matrix[periodic(iy,n_spins,1)][ix]);
       if ( ran2(&idum) <= w[deltaE+8] ) {
-    spin_matrix[iy][ix] *= -1.0;  // flip one spin and accept new spin config
+        spin_matrix[iy][ix] *= -1.0;  // flip one spin and accept new spin config
         M += (double) 2*spin_matrix[iy][ix];
         E += (double) deltaE;
       }
